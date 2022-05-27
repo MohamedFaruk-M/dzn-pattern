@@ -1,5 +1,7 @@
-package com.nfs.academy.lrn.pattern.command;
+package com.nfs.academy.lrn.pattern.command.entity;
 
+import com.nfs.academy.lrn.pattern.command.services.ICommand;
+import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.factory.CommandFactory;
 
 public class Controller {

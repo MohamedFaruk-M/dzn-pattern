@@ -1,4 +1,7 @@
-package com.nfs.academy.lrn.pattern.command;
+package com.nfs.academy.lrn.pattern.command.services;
+
+import com.nfs.academy.lrn.pattern.command.util.Command;
+import com.nfs.academy.lrn.pattern.command.entity.Device;
 
 public class PowerImpl implements ICommand {
 
@@ -31,12 +34,7 @@ public class PowerImpl implements ICommand {
             System.out.println("Couldn't perform the given function, Device is already being in OFF state");
             return;
         }
-        try {
-            device.finalize();
-            System.out.println("Device has been turned OFF successfully");
-        } catch (Throwable e) {
-            System.out.println("Exception occurred while turning OFF" + e.getMessage());
-//            e.printStackTrace();
-        }
+        device.reset();
+        System.out.println("Device has been turned OFF successfully");
     }
 }

@@ -1,7 +1,10 @@
-package com.nfs.academy.lrn.pattern.command;
+package com.nfs.academy.lrn.pattern.command.services;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import com.nfs.academy.lrn.pattern.command.util.Command;
+import com.nfs.academy.lrn.pattern.command.entity.Device;
 
 public class PlayListImpl implements ICommand {
     @Override
@@ -33,12 +36,14 @@ public class PlayListImpl implements ICommand {
         int currentChannel = device.getCurrentChannel();
         Set<Integer> favourites = device.getFavourites();
         if (favourites == null) {
-            System.out.println("unable to remove the given channel " + currentChannel + " from the favourites, since it doesn't exist");
+            System.out.println("unable to remove the given channel "
+                    + currentChannel + " from the favourites, since it doesn't exist");
             return;
         }
         boolean succeed = favourites.remove(currentChannel);
         if (!succeed) {
-            System.out.println("unable to remove the given channel " + currentChannel + " from the favourites, since it doesn't exist");
+            System.out.println("unable to remove the given channel "
+                    + currentChannel + " from the favourites, since it doesn't exist");
             return;
         }
         System.out.println("removing the channel "

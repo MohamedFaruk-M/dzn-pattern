@@ -1,5 +1,9 @@
 package com.nfs.academy.lrn.pattern.command;
 
+import com.nfs.academy.lrn.pattern.command.entity.Controller;
+import com.nfs.academy.lrn.pattern.command.entity.Device;
+import com.nfs.academy.lrn.pattern.command.util.Command;
+
 public class Person {
 
     private Controller remote;

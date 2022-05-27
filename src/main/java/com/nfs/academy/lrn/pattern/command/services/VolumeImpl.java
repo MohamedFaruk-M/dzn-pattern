@@ -1,4 +1,7 @@
-package com.nfs.academy.lrn.pattern.command;
+package com.nfs.academy.lrn.pattern.command.services;
+
+import com.nfs.academy.lrn.pattern.command.util.Command;
+import com.nfs.academy.lrn.pattern.command.entity.Device;
 
 public class VolumeImpl implements ICommand {
     @Override

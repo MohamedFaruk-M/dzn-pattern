@@ -1,7 +1,10 @@
-package com.nfs.academy.lrn.pattern.command;
+package com.nfs.academy.lrn.pattern.command.entity;
 
 import java.io.Serializable;
 import java.util.Set;
+
+import com.nfs.academy.lrn.pattern.command.services.ICommand;
+import com.nfs.academy.lrn.pattern.command.util.Command;
 
 public class Device implements Serializable {
 
@@ -60,9 +63,7 @@ public class Device implements Serializable {
         getCommand().execute(type, this);
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    public void reset() {
         setStatus(0);
         setVolumeLevel(0);
         setCurrentChannel(0);

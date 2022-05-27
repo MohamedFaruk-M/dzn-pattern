@@ -1,4 +1,4 @@
-package com.nfs.academy.lrn.pattern.command;
+package com.nfs.academy.lrn.pattern.command.util;
 
 public enum Command {
 

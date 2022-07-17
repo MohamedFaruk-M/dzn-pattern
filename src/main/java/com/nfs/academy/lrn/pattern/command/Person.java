@@ -20,11 +20,13 @@ public class Person {
                     + ") in IDLE state, please plug on the power to initiate");
         remote.identify(button);
 
-        television.consume(remote.publish());
+//        television.consume(remote.publish());
 
         System.out.println("\nBefore " + button + " television state: " + television);
 
-        television.performOperation(button);
+//        television.performOperation(button);
+
+        television = remote.publish(television);
 
         System.out.println("After " + button + " television state: " + television);
 

@@ -3,9 +3,6 @@ package com.nfs.academy.lrn.pattern.command.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.nfs.academy.lrn.pattern.command.services.ICommand;
-import com.nfs.academy.lrn.pattern.command.util.Command;
-
 public class Device implements Serializable {
 
     private int status;
@@ -13,7 +10,7 @@ public class Device implements Serializable {
     private int currentChannel;
     private Set<Integer> favourites;
 
-    private ICommand command;
+//    private ICommand command;
 
     public int getStatus() {
         return status;
@@ -47,21 +44,21 @@ public class Device implements Serializable {
         this.favourites = favourites;
     }
 
-    public ICommand getCommand() {
-        return command;
-    }
+//    public ICommand getCommand() {
+//        return command;
+//    }
 
-    public void setCommand(ICommand command) {
-        this.command = command;
-    }
+//    public void setCommand(ICommand command) {
+//        this.command = command;
+//    }
 
-    public void consume(ICommand command) {
-        setCommand(command);
-    }
+//    public void consume(ICommand command) {
+//        setCommand(command);
+//    }
 
-    public void performOperation(Command type) {
-        getCommand().execute(type, this);
-    }
+//    public void performOperation(Command type) {
+//        getCommand().execute(type, this);
+//    }
 
     public void reset() {
         setStatus(0);

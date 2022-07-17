@@ -36,18 +36,18 @@ public class Controller {
     }
 
     /**
-     * publish the {@link Controller#identify(Command) identified command} on to the given <code>television</code> device
+     * publish the {@link Controller#identify(Command) identified command} on the given <code>television</code> device
      *
      * @param television instance on which relevant execution performed
      * @return mutated receiver instance
      */
-    public Device publish(Device television) {
-        television = publish().execute(getType(), television);
+    public Device publishSgl(Device television) {
+        television = obtainCtrl().execute(getType(), television);
         refresh();
         return television;
     }
 
-    public ICommand publish() {
+    public ICommand obtainCtrl() {
         if (command == null)
             throw new IllegalStateException("Couldn't publish the state, before identify");
         return getCommand();

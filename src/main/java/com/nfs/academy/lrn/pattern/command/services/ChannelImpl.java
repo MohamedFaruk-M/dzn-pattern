@@ -3,9 +3,21 @@ package com.nfs.academy.lrn.pattern.command.services;
 import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.command.entity.Device;
 
-public class ChannelImpl implements ICommand {
+public class ChannelImpl extends AbstractCommand implements ICommand {
+
+    @Override
+    public void execute() {
+        delegateExecution();
+    }
+
     @Override
     public Device execute(Command type, Device device) {
+        this.type = type;
+        this.device = device;
+        return delegateExecution();
+    }
+
+    private Device delegateExecution(){
         switch (type) {
             case INCREMENT_CHANNEL:
                 device.incChannel();

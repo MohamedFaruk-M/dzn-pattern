@@ -3,6 +3,7 @@ package com.nfs.academy.lrn.pattern.factory;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.nfs.academy.lrn.pattern.command.services.AbstractCommand;
 import com.nfs.academy.lrn.pattern.command.services.ChannelImpl;
 import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.command.services.ICommand;
@@ -12,6 +13,12 @@ import com.nfs.academy.lrn.pattern.command.services.VolumeImpl;
 
 public class CommandFactory {
 
+    /**
+     * use an alternative: dynamic version {@link CommandFactory#getDynamicImpl(Command)}
+     * @param type
+     * @return
+     */
+    @Deprecated
     public static ICommand getImpl(Command type) {
         switch (type) {
             case ON:
@@ -33,6 +40,17 @@ public class CommandFactory {
             default:
                 throw new IllegalArgumentException("Could generate object for the given type: " + type);
         }
+    }
+
+    /**
+     * provide the interface which wraps the command in it.
+     * @param type
+     * @return
+     */
+    public static ICommand getDynamicImpl(Command type) {
+        ICommand command = getImpl(type);
+        ((AbstractCommand) command).setType(type);
+        return command;
     }
 
     // caching with flyweight

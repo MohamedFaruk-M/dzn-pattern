@@ -3,10 +3,21 @@ package com.nfs.academy.lrn.pattern.command.services;
 import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.command.entity.Device;
 
-public class PowerImpl implements ICommand {
+public class PowerImpl extends AbstractCommand implements ICommand {
+
+    @Override
+    public void execute() {
+        delegateExec();
+    }
 
     @Override
     public Device execute(Command type, Device device) {
+        this.type = type;
+        this.device = device;
+        return delegateExec();
+    }
+
+    private Device delegateExec() {
         switch (type) {
             case ON:
                 device.powerOn();

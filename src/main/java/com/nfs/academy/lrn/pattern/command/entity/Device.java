@@ -6,6 +6,8 @@ import java.util.Set;
 
 public class Device implements Serializable {
 
+    private static final long serialVersionUID = -8988442524081196685L;
+    
     private int status;
     private int volumeLevel;
     private int currentChannel;

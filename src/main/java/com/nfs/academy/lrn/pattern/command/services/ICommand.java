@@ -1,14 +1,18 @@
 package com.nfs.academy.lrn.pattern.command.services;
 
-import java.io.Serializable;
-
-import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.command.entity.Device;
+import com.nfs.academy.lrn.pattern.command.util.Command;
 
-public interface ICommand extends Serializable {
+public interface ICommand {
+
+    /**
+     * derive the traditional command pattern exec() with no-args
+     */
+    void execute();
 
     // execute the given command on to the given device
     // and return the mutated obj
+    @Deprecated
     Device execute(Command type, Device device);
 
 }

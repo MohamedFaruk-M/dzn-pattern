@@ -1,20 +1,29 @@
 package com.nfs.academy.lrn.pattern.command.services;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.command.entity.Device;
 
-public class PlayListImpl implements ICommand {
+public class PlayListImpl extends AbstractCommand implements ICommand {
+
+    @Override
+    public void execute() {
+        delegateExec();
+    }
+
     @Override
     public Device execute(Command type, Device device) {
+        this.type = type;
+        this.device = device;
+        return delegateExec();
+    }
+
+    private Device delegateExec() {
         switch (type) {
             case ADD_FAVOURITE:
-                addFavourite(device);
+                device.addFavourite();
                 return device;
             case REMOVE_FAVOURITE:
-                removeFavourite(device);
+                device.removeFavourite();
                 return device;
             default:
                 throw new IllegalArgumentException("Couldn't find relevant operation for the given type: " + type);
@@ -22,33 +31,4 @@ public class PlayListImpl implements ICommand {
         }
     }
 
-    private void addFavourite(Device device) {
-        int currentChannel = device.getCurrentChannel();
-        System.out.println("extending the favourites with the channel " + currentChannel);
-        Set<Integer> favourites = device.getFavourites();
-        if (favourites == null)
-            favourites = new HashSet<>();
-        favourites.add(currentChannel);
-        device.setFavourites(favourites);
-    }
-
-    private void removeFavourite(Device device) {
-        int currentChannel = device.getCurrentChannel();
-        Set<Integer> favourites = device.getFavourites();
-        if (favourites == null) {
-            System.out.println("unable to remove the given channel "
-                    + currentChannel + " from the favourites, since it doesn't exist");
-            return;
-        }
-        boolean succeed = favourites.remove(currentChannel);
-        if (!succeed) {
-            System.out.println("unable to remove the given channel "
-                    + currentChannel + " from the favourites, since it doesn't exist");
-            return;
-        }
-        System.out.println("removing the channel "
-                + currentChannel + "from the favourites");
-        device.setFavourites(favourites);
-
-    }
 }

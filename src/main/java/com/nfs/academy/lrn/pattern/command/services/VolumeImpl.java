@@ -3,16 +3,27 @@ package com.nfs.academy.lrn.pattern.command.services;
 import com.nfs.academy.lrn.pattern.command.util.Command;
 import com.nfs.academy.lrn.pattern.command.entity.Device;
 
-public class VolumeImpl implements ICommand {
+public class VolumeImpl extends AbstractCommand implements ICommand {
+
+    @Override
+    public void execute() {
+        delegateExec();
+    }
+
     @Override
     public Device execute(Command type, Device device) {
+        this.type = type;
+        this.device = device;
+        return delegateExec();
+    }
 
+    private Device delegateExec() {
         switch (type) {
             case INCREASE_VOLUME:
-                incVolume(device);
+                device.incVolume();
                 return device;
             case DECREASE_VOLUME:
-                decVolume(device);
+                device.decVolume();
                 return device;
             default:
                 throw new IllegalArgumentException("Couldn't find relevant operation for the given type: " + type);
@@ -21,15 +32,4 @@ public class VolumeImpl implements ICommand {
 
     }
 
-    private void incVolume(Device device) {
-        System.out.println("incrementing volume by 1 unit");
-        int currentVolumeLevel = device.getVolumeLevel();
-        device.setVolumeLevel(++currentVolumeLevel);
-    }
-
-    private void decVolume(Device device) {
-        System.out.println("decrementing volume by 1 unit");
-        int currentVolumeLevel = device.getVolumeLevel();
-        device.setVolumeLevel(--currentVolumeLevel);
-    }
 }
